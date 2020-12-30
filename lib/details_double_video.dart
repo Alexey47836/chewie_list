@@ -10,8 +10,6 @@ class DetailsDoubleVideo extends StatefulWidget {
 class _DetailsDoubleVideoState extends State<DetailsDoubleVideo> {
   VideoPlayerController _videoPlayerControllerOne;
   VideoPlayerController _videoPlayerControllerTwo;
-  // Future<void> initializeVideoPlayerOne;
-  // Future<void> initializeVideoPlayerTwo;
 
   @override
   void initState() {
@@ -28,8 +26,6 @@ class _DetailsDoubleVideoState extends State<DetailsDoubleVideo> {
       ..initialize().then((value) {
         setState(() {});
       });
-    // initializeVideoPlayerOne = _videoPlayerControllerOne.initialize();
-    // initializeVideoPlayerTwo = _videoPlayerControllerOne.initialize();
   }
 
   @override
