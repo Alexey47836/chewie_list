@@ -1,4 +1,3 @@
-import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:test_chewie_list/models/video.dart';
 import 'package:video_player/video_player.dart';
@@ -20,7 +19,10 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   void initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.network(widget.video.path);
+    _videoPlayerController = VideoPlayerController.network(
+        widget.video.pathOne == null
+            ? widget.video.pathLOne
+            : widget.video.pathOne);
     initializeVideoPlayer = _videoPlayerController.initialize();
   }
 
@@ -48,15 +50,106 @@ class _DetailsPageState extends State<DetailsPage> {
           style: TextStyle(fontSize: 18.0),
         ),
       ),
-      body: FutureBuilder(
-        future: initializeVideoPlayer,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return ChewieItem(videoPlayerController: _videoPlayerController);
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
+      body: Column(
+        children: [
+          FutureBuilder(
+            future: initializeVideoPlayer,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Container(
+                    height: 240,
+                    child: ChewieItem(
+                        videoPlayerController: _videoPlayerController));
+              } else {
+                return Container(
+                    height: 240.0,
+                    child: Center(child: CircularProgressIndicator()));
+              }
+            },
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RaisedButton(
+                onPressed: () {
+                  setState(() {
+                    _videoPlayerController.pause();
+                    _videoPlayerController = VideoPlayerController.network(
+                        widget.video.pathOne == null
+                            ? widget.video.pathLOne
+                            : widget.video.pathOne);
+                    initializeVideoPlayer = _videoPlayerController.initialize();
+                  });
+                },
+                color: Colors.deepPurple,
+                child: Text(
+                  '1',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  setState(() {
+                    _videoPlayerController.pause();
+                    _videoPlayerController = VideoPlayerController.network(
+                        widget.video.pathTwo == null
+                            ? widget.video.pathLTwo
+                            : widget.video.pathTwo);
+                    initializeVideoPlayer = _videoPlayerController.initialize();
+                  });
+                },
+                color: Colors.deepPurple,
+                child: Text(
+                  '2',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  setState(() {
+                    _videoPlayerController.pause();
+                    _videoPlayerController = VideoPlayerController.network(
+                        widget.video.pathThree == null
+                            ? widget.video.pathLThree
+                            : widget.video.pathThree);
+                    initializeVideoPlayer = _videoPlayerController.initialize();
+                  });
+                },
+                color: Colors.deepPurple,
+                child: Text(
+                  '3',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  setState(() {
+                    _videoPlayerController.pause();
+                    _videoPlayerController = VideoPlayerController.network(
+                        widget.video.pathFour == null
+                            ? widget.video.pathLFour
+                            : widget.video.pathFour);
+                    initializeVideoPlayer = _videoPlayerController.initialize();
+                  });
+                },
+                color: Colors.deepPurple,
+                child: Text(
+                  '4',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
