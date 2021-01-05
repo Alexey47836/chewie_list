@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_chewie_list/second_list_page.dart';
 import 'package:test_chewie_list/models/video.dart';
 import 'package:test_chewie_list/details_page.dart';
 import 'details_double_video.dart';
@@ -100,6 +101,16 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => DetailsDoubleVideo(),
+                  ),
+                );
+              }),
+          IconButton(
+              icon: Icon(Icons.format_list_bulleted),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SecondListPage(),
                   ),
                 );
               }),
